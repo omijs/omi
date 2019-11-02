@@ -1,7 +1,22 @@
-.DS_Store
 node_modules
+/node_modules
+/npm-debug.log
+.DS_Store
+/_dev
+/coverage
+package-lock.json
+/test/ts/**/*.js
 
+# Editor and IDE configuration
+.vscode/
+.idea/
 
-/.idea
-/md2site/template/app/rev
-/omi-canvas
+vue
+vue-ms
+/packages/*/node_modules
+/packages/*/yarn.lock
+/packages/*/yarn-error.log
+
+npm-debug.log
+/packages/*/todo.md
+bak.js

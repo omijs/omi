@@ -1,413 +1,357 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <title>Omi</title>
-    <link rel="shortcut icon" href="asset/omi.ico">
-    <style type="text/css">
-        * {
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-        }
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Omi - Front End Cross-Frameworks Framework</title>
+	<link rel="shortcut icon" href="https://tencent.github.io/omi/packages/omiu/examples/build/favicon.ico">
+	<style>
+		html,
+		body {
+			padding: 0;
+			margin: 0;
+			overflow-x: hidden;
+		}
 
-        body, ul, li {
-            padding: 0;
-            margin: 0;
-            border: 0;
-            font-family: Segoe UI Light,Segoe UI,Microsoft Jhenghei,Mirco Yahei,'sans-serif';
-        }
+		canvas {
+			padding: 0;
+			margin: 0;
+			border: 0;
+		}
 
-        ul, li {
-            list-style: none;
-        }
+		#container {
+			text-align: center;
+		}
+	</style>
 
-        a {
-            text-decoration: none;
-            outline: 0;
-        }
+	<style>
+		body {
+			background-color: #302f33;
+			/*opacity: 0;*/
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-ms-flex-direction: column;
+			flex-direction: column;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			text-transform: uppercase;
+			font-size: 12px;
+			letter-spacing: 2px;
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
 
-        img {
-            vertical-align: middle;
-            border: 0;
-        }
-
-
-        ._ib {
-            display: inline-block;
-        }
-    </style>
-
-    <style>
-        .ctn {
-            width: 100%;
-        }
-
-        .head {
-            width: 100%;
-            line-height: 60px;
-            height: 60px;
-            font-weight: bold;
-            background-color: #171f26;
-            border-bottom: 1px solid #1e2b34;
-        }
-
-        .head li {
-            display: inline-block;
-            margin-left: 10px;
-            font-size: 18px;
-            font-weight: normal;
-            color: black;
-        }
-
-        .head li a {
-            color: white;
-            display: block;
-            width: 100%;
-        }
+		/*body.ready { opacity: 1; }*/
 
 
-        .ad {
-            text-align: center;
-            background-color: #171f26 ;
-            height: 230px;
-            position: relative;
-        }
+		.icon-text path,
+		.icon-text polygon {
+			/*opacity: 0;*/
+		}
 
-        .ad_main {
-            color: white;
+		.info {
+			text-align: center;
+		}
 
-            z-index: 2;
+		.description {
+			/*opacity: 0;*/
+			color: white;
+			margin-top: 20px;
+		}
 
+		.links {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-ms-flex-direction: column;
+			flex-direction: column;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+		}
 
-            font-size: 20px;
-        }
+		@media (min-width: 700px) {
+			.links {
+				-webkit-box-orient: horizontal;
+				-webkit-box-direction: normal;
+				-ms-flex-direction: row;
+				flex-direction: row;
 
+			}
+		}
 
+		.button {
+			/*opacity: 0;*/
+			position: relative;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-ms-flex-direction: column;
+			flex-direction: column;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			width: 180px;
+			height: 60px;
+			text-decoration: none;
+		}
 
-        .ad_main h1 {
-            color: white;
-            font-size: 40px;
-        }
+		.button.blue {
+			color: #5E89FB;
+		}
 
-        .footer {
-            height: 50px;
-            text-align: center;
-            line-height: 50px;
-            background-color: #202020;
-            color: white;
-        }
+		.button.green {
+			color: #07C160;
+		}
 
-        .special {
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 10px;
-        }
+		.button.red {
+			color: #F95050;
+		}
 
-        .features li {
-            display: inline-block;
-            width: 25%;
-            vertical-align: top;
-        }
+		.button svg {
+			position: absolute;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			stroke-width: 1;
+			fill: none;
+			fill-rule: evenodd;
+			stroke: currentColor;
+		}
 
-        @media only screen and (max-width: 768px) {
-            /* For mobile phones: */
-            .features p {
-                height: auto;
-                width: 200px;
-                margin: 0 auto;
-                font-size: 18px;
-            }
+		.button.green svg {
+			-webkit-transform: rotate(180deg);
+			transform: rotate(180deg);
+		}
 
-            .ad_main p{
-                font-size: 16px;
-            }
-            .head #menu li a {
-                color: black;
-            }
+		.button path {
+			scale: .9;
+			transform-origin: 50% 50%;
+		}
 
+		.credits {
+			/*opacity: 0;*/
+			margin-top: 20px;
+			color: #979797;
+		}
 
+		.credits a {
+			position: relative;
+			color: currentColor;
+			text-decoration: none;
+		}
 
-            .features li {
-                width: 100%;
-                vertical-align: top;
-            }
+		.credits a:after {
+			content: "";
+			/*opacity: 0;*/
+			display: block;
+			position: absolute;
+			left: 0;
+			bottom: -3px;
+			width: 100%;
+			border-bottom: 1px solid currentColor;
+			transition: opacity .75s ease;
+		}
 
-            .mb_menu {
-                display: block;
-                position: fixed;
-                left: 0px;
-                top: 0px;
-                width: 50px;
-                z-index: 200;
-                height: 50px;
-                line-height: 50px;
-                text-align: center;
-            }
+		/*.credits a:hover:after {
+          opacity: 1;
+          transition: opacity .25s ease;
+        }*/
 
-            .mb_menu img {
-                width: 30px;
-            }
+		.credits a,
+		.credits span {
+			transition: color .75s ease;
+		}
 
-            .head ul {
-                -moz-transform: translateX(-100%) translateZ(0);
-                -ms-transform: translateX(-100%) translateZ(0);
-                -o-transform: translateX(-100%) translateZ(0);
-                -webkit-transform: translateX(-100%) translateZ(0);
-                transform: translateX(-100%) translateZ(0);
-                text-align: center;
-                width: 100%;
-                padding-top: 58px;
-                background-color: white;
-                position: fixed;
-                z-index: 100;
-                left: 0;
-                top: 0;
-                top: 0px;
-                border-bottom: 1px solid #dddddd;
-                -moz-transition: all .6s ease;
-                -o-transition: all .6s ease;
-                -webkit-transition: all .6s ease;
-                transition: all .6s ease;
-            }
+		.credits a:hover,
+		.highlighted {
+			color: white;
+			transition: color .25s ease;
+		}
 
-            .head ul.show {
-                -moz-transform: translateX(0%) translateZ(0);
-                -ms-transform: translateX(0%) translateZ(0);
-                -o-transform: translateX(0%) translateZ(0);
-                -webkit-transform: translateX(0%) translateZ(0);
-                transform: translateX(0%) translateZ(0);
-                text-align: center;
-                width: 100%;
-                padding-top: 58px;
-                background-color: white;
-                position: fixed;
-                z-index: 100;
-                left: 0;
-                top: 0;
-                top: 0px;
-                border-bottom: 1px solid #dddddd;
-                -moz-transition: all .6s ease;
-                -o-transition: all .6s ease;
-                -webkit-transition: all .6s ease;
-                transition: all .6s ease;
-            }
+		#container {
+			margin-top: 100px;
+		}
 
-            .head li {
-                width: 100%;
-                border-top: 1px solid #dddddd;
-                margin-left: 0px;
-            }
-        }
+		#container img{
+				width: 150px;
+			}
 
-        @media only screen and (min-width: 768px) {
-            .features p {
-                height: 100px;
-                width: 200px;
-                margin: 0 auto;
-                font-size: 18px;
-            }
+		@media only screen and (max-width: 500px) {
+			#container canvas {
+				width: 100%;
+			}
 
-            .mb_menu {
-                display: none;
-            }
-            /* For desktop: */
-            .ctn {
-                width: 100%;
-                margin: 0 auto;
-            }
+			#container img{
+				width: 80px;
+			}
 
-            .special {
-                height:400px;
+			#container {
+				margin-top: 25px;
+			}
 
-            }
-        }
+		}
 
-        .major h2{
-            font-size: 28px;
-        }
-
-        .features h3{
-            font-size: 23px;
-        }
-
-        .major h2:after {
-            background-color: #dddddd;
-            background-image: -moz-linear-gradient(90deg, #efa8b0, #a89cc8, #8cc9f0);
-            background-image: -webkit-linear-gradient(90deg, #efa8b0, #a89cc8, #8cc9f0);
-            background-image: -ms-linear-gradient(90deg, #efa8b0, #a89cc8, #8cc9f0);
-            background-image: linear-gradient(90deg, #efa8b0, #a89cc8, #8cc9f0);
-            display: block;
-            content: '';
-            width: 3.25em;
-            height: 2px;
-            -moz-border-radius: 2px;
-            -webkit-border-radius: 2px;
-            border-radius: 2px;
-            margin: 20px auto 0px;
-        }
-
-        .intro-get-started-link {
-            font-size: 18px;
-            font-family: Lato,Helvetica Neue,Helvetica,Arial,sans-serif;
-            display: inline-block;
-            color: #0e83cd;
-            text-decoration: none;
-            margin: 40px 0;
-            border: 3px solid;
-            border-color: #25a1f0;
-            padding: 12px 24px;
-            position: relative;
-            -webkit-transition: .2s;
-            transition: .2s;
-        }
-        .intro-cmd-item:before {
-            content: "$";
-            color: #0e83cd;
-            padding-right: 15px;
-        }
-        .intro-cmd-wrap{
-            display: inline-block;
-            text-align: left;
-            margin-top: 20px;
-        }
-
-        .intro-cmd-item {
-            font-size: 16px;
-            font-family: Source Code Pro,Monaco,Menlo,Consolas,monospace;
-            line-height: 2;
-            padding: 0 30px;
-        }
-
-        .ad_dec_dt{
-            font-size: 42px;
-            color: #00a6ff;
-        }
-        .ad_dec_box{
-            padding-top: 30px;
-        }
-        .ad_github_link{
-            color: #48b1f4;
-            margin-top: 24px;
-        }
-
-        .footer a:link {color: #FFFFFF}
-        .footer a:visited {color: #FFFFFF}
-        .footer a:hover {color: #0e83cd}
-        .footer a:active {color: #FFFFFF}
-    </style>
+		#wp {
+			z-index: 10;
+		}
+	</style>
 </head>
+
 <body>
-<div class="mb_menu">
-    <img src="./asset/menu.png" alt="" />
-</div>
-<div class="ctn">
-    <div class="head bord-btm">
-        <ul class="_ib" id="menu">
-            <li>
-                <a href="http://alloyteam.github.io/omi/website/docs-cn.html">Docs</a>
-            </li>
-            <li>
-                <a href="http://alloyteam.github.io/omi/example/playground/">PlayGround</a>
-            </li>
-            <li >
-                <a href="https://github.com/AlloyTeam/omi/tree/master/cli">CLI</a>
-            </li>
-            <li >
-                <a href="https://github.com/AlloyTeam/omi">Github</a>
-            </li>
-            <li >
-                <a href="https://alloyteam.github.io/omi/website/index-en.html">English</a>
-            </li>
-        </ul>
-    </div>
-    <div class="ad">
-        <div class="ad_main">
-            <div class="ad_dec_box"><span class="ad_dec_dt">Omi</span><br/>开放现代的Web组件化框架</div>
-            <div class="intro-get-started-wrap">
-            <a href="https://github.com/AlloyTeam/omi" class="ad_github_link intro-get-started-link">Github</a>
-        </div>
-        </div>
-    </div>
+	<div id="wp">
+		<div id="container">
+			<img
+				src="https://tencent.github.io/omi/assets/omi-logo2019.svg">
+		</div>
+		<div class="info">
+			<p class="description">
+				Front End Cross-Frameworks Framework
+			</p>
+			<div class="links">
+				<a class="button" style='color: #79e670;' href="https://tencent.github.io/omi/site/docs/index.html" target="_blank">
+					<svg viewBox="0 0 180 60">
+						<path
+							d="M10,10 C10,10 50,9.98999977 90,9.98999977 C130,9.98999977 170,10 170,10 C170,10 170.009995,20 170.009995,30 C170.009995,40 170,50 170,50 C170,50 130,50.0099983 90,50.0099983 C50,50.0099983 10,50 10,50 C10,50 9.98999977,40 9.98999977,30 C9.98999977,20 10,10 10,10 Z">
+						</path>
+					</svg>
+					<span>Omi Docs</span>
+				</a>
+				<a class="button" style='color: #79e670' href="https://tencent.github.io/omi/packages/omim/docs/build/index.html"  target="_blank">
+					<svg viewBox="0 0 180 60">
+						<path
+							d="M10,10 C10,10 50,9.98999977 90,9.98999977 C130,9.98999977 170,10 170,10 C170,10 170.009995,20 170.009995,30 C170.009995,40 170,50 170,50 C170,50 130,50.0099983 90,50.0099983 C50,50.0099983 10,50 10,50 C10,50 9.98999977,40 9.98999977,30 C9.98999977,20 10,10 10,10 Z">
+						</path>
+					</svg>
+					<span>Omim Docs</span>
+				</a>
+				<a class="button" style='color: #79e670;' href="https://github.com/Tencent/omi/tree/master/packages/omi-kbone"
+					target="_blank">
+					<svg viewBox="0 0 180 60">
+						<path
+							d="M10,10 C10,10 50,9.98999977 90,9.98999977 C130,9.98999977 170,10 170,10 C170,10 170.009995,20 170.009995,30 C170.009995,40 170,50 170,50 C170,50 130,50.0099983 90,50.0099983 C50,50.0099983 10,50 10,50 C10,50 9.98999977,40 9.98999977,30 C9.98999977,20 10,10 10,10 Z">
+						</path>
+					</svg>
+					<span>Omi + Kbone</span>
+				</a>
+				<a class="button" style='color: #79e670;' href="https://github.com/Tencent/omi/tree/master/packages/omix" target="_blank">
+					<svg viewBox="0 0 180 60">
+						<path
+							d="M10,10 C10,10 50,9.98999977 90,9.98999977 C130,9.98999977 170,10 170,10 C170,10 170.009995,20 170.009995,30 C170.009995,40 170,50 170,50 C170,50 130,50.0099983 90,50.0099983 C50,50.0099983 10,50 10,50 C10,50 9.98999977,40 9.98999977,30 C9.98999977,20 10,10 10,10 Z">
+						</path>
+					</svg>
+					<span>Omix + 小程序</span>
+				</a>
+			</div>
+			<div class="links">
+					<a class="button" style='color: #c984f7;'  href="https://github.com/Tencent/omi/tree/master/packages/preact-css" target="_blank">
+						<svg viewBox="0 0 180 60">
+							<path
+								d="M10,10 C10,10 50,9.98999977 90,9.98999977 C130,9.98999977 170,10 170,10 C170,10 170.009995,20 170.009995,30 C170.009995,40 170,50 170,50 C170,50 130,50.0099983 90,50.0099983 C50,50.0099983 10,50 10,50 C10,50 9.98999977,40 9.98999977,30 C9.98999977,20 10,10 10,10 Z">
+							</path>
+						</svg>
+						<span>Omi + Preact</span>
+					</a>
+				<a class="button" style='color: #61dafb;'  href="https://github.com/Tencent/omi/tree/master/packages/omis" target="_blank">
+					<svg viewBox="0 0 180 60">
+						<path
+							d="M10,10 C10,10 50,9.98999977 90,9.98999977 C130,9.98999977 170,10 170,10 C170,10 170.009995,20 170.009995,30 C170.009995,40 170,50 170,50 C170,50 130,50.0099983 90,50.0099983 C50,50.0099983 10,50 10,50 C10,50 9.98999977,40 9.98999977,30 C9.98999977,20 10,10 10,10 Z">
+						</path>
+					</svg>
+					<span>Omis + React</span>
+				</a>
+				<a class="button "  style='color: #42b983;' href="https://github.com/Tencent/omi/tree/master/packages/omiv"  target="_blank">
+					<svg viewBox="0 0 180 60">
+						<path
+							d="M10,10 C10,10 50,9.98999977 90,9.98999977 C130,9.98999977 170,10 170,10 C170,10 170.009995,20 170.009995,30 C170.009995,40 170,50 170,50 C170,50 130,50.0099983 90,50.0099983 C50,50.0099983 10,50 10,50 C10,50 9.98999977,40 9.98999977,30 C9.98999977,20 10,10 10,10 Z">
+						</path>
+					</svg>
+					<span>Omiv + Vue</span>
+				</a>
 
-    <div class="special">
+				<a class="button" style='color:white;' href="https://github.com/Tencent/omi" target="_blank">
+					<svg viewBox="0 0 180 60">
+						<path
+							d="M10,10 C10,10 50,9.98999977 90,9.98999977 C130,9.98999977 170,10 170,10 C170,10 170.009995,20 170.009995,30 C170.009995,40 170,50 170,50 C170,50 130,50.0099983 90,50.0099983 C50,50.0099983 10,50 10,50 C10,50 9.98999977,40 9.98999977,30 C9.98999977,20 10,10 10,10 Z">
+						</path>
+					</svg>
+					<span>GitHub</span>
+				</a>
+			</div>
+			<p class="credits">
+				Copyright<span class="version"></span> © <span class="date">2019</span> Tencent
+			</p>
+		</div>
+	</div>
+	<pre style="position:absolute;left:40px;top:40px;transform:rotateZ(5deg);pointer-events: none;text-transform:none;">
+      <code>
+import { define, render } from 'omi'
 
-        <ul class="features">
-            <li>
-                <span class="icon major style3 fa-copy"></span>
-                <h3>局部CSS</h3>
-                <p>HTML+ Scoped CSS + JS组成可复用的组件。不用担心组件的CSS会污染组件外的,Omi会帮你处理好一切</p>
-            </li>
-            <li>
-                <span class="icon major style1 fa-code"></span>
-                <h3>超小的尺寸</h3>
-                <p> 7 kb (gzip)<br/>虽然文件尺寸小，但是兼容性很好！兼容IE8及IE8以上版本</p>
-            </li>
-            <li>
-                <span class="icon major style5 fa-diamond"></span>
-                <h3>更自由的更新</h3>
-                <p>
-                    每个组件都有update方法，自由选择你认为最佳的时机进行更新。
-                </p>
-            </li>
-        </ul>
-        <ul class="features" style="margin-top: 30px;">
-            <li>
-                <span class="icon major style1 fa-code"></span>
-                <h3>模板引擎可替换</h3>
-                <p>开发者可以重写Omi.template方法来使用任意模板引擎</p>
-            </li>
-            <li>
-                <span class="icon major style3 fa-copy"></span>
-                <h3>完全面向对象</h3>
-                <p>函数式和面向对象各有优劣，Omi使用完全的面向对象的方式来构建Web程序。</p>
-            </li>
-            <li>
-                <span class="icon major style5 fa-diamond"></span>
-                <h3>ES6+ 和 ES5都可以</h3>
-                <p>Omi提供了ES6+和ES5的两种开发方案。你可以自有选择你喜爱的方式。</p>
-            </li>
-        </ul>
-    </div>
-    <div style="text-align: center;">
-        <ul class="intro-cmd-wrap">
-            <li class="intro-cmd-item">npm install omi-cli -g</li>
-            <li class="intro-cmd-item">omi init your_project_name</li>
-            <li class="intro-cmd-item">cd your_project_name</li>
-            <li class="intro-cmd-item">npm run dev</li>
-            <li class="intro-cmd-item">npm run dist</li>
-        </ul>
-        <div class="intro-get-started-wrap">
-            <a href="https://alloyteam.github.io/omi/website/docs.html" class="intro-get-started-link">开始使用</a>
-        </div>
-    </div>
+class Store {
+  data = {
+    count: 1
+  }
+  sub = () => {
+    this.data.count--
+  }
+  add = () => {
+    this.data.count++
+  }
+}
 
-    <div class="footer bord-top">Copyright &copy; <script>document.write(new Date().getFullYear());</script> <a href="http://www.AlloyTeam.com/" target="_blank">AlloyTeam.com</a>.<a  target="_blank" href="http://www.miitbeian.gov.cn">粤ICP备17023036号</a></div>
+define('my-counter', _ => (
+  &lt;&gt;
+    &lt;button onClick={_.store.sub}&gt;-&lt;/button&gt;
+    &lt;span&gt;{_.store.data.count}&lt;/span&gt;
+    &lt;button onClick={_.store.add}&gt;+&lt;/button&gt;
+  &lt;/&gt;, {
+    use: ['count']
+  }
+))
 
-</div>
+render(&lt;my-counter /&gt;, 'body', new Store)
+       </code>
+  </pre>
 
-<script>
 
-    function toggleClass(element, className) {
-        if (!element || !className) {
-            return;
-        }
+	<script>
 
-        var classString = element.className, nameIndex = classString.indexOf(className);
-        if (nameIndex == -1) {
-            classString += ' ' + className;
-        }
-        else {
-            classString = classString.substr(0, nameIndex) + classString.substr(nameIndex + className.length);
-        }
-        element.className = classString;
-    }
-    var menuDiv = document.getElementById("menu");
-    document.querySelector(".mb_menu").onclick = function () {
-        toggleClass(menuDiv, "show");
+		function detectMobile() {
+			if (window.innerWidth <= 800 && window.innerHeight <= 900) {
+				return true;
+			} else {
+				return false;
+			}
+		}
 
-    }
-</script>
+		if(detectMobile()){
+			//document.getElementById('wp').style.marginTop = (window.innerHeight - 800) / 2 + 'px'
+
+		}else{
+			document.getElementById('wp').style.marginTop = (window.innerHeight - 700) / 2 + 'px'
+
+		}
+
+
+
+	</script>
 </body>
+
 </html>
